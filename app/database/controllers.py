@@ -38,5 +38,3 @@ class Database:
 
     def get_unique_drugs(self):
         return db.session.query(PrescribingData.BNF_name).distinct().count()
-
-    #def get_most_prescribed(self):
