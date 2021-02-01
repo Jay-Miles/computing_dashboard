@@ -36,4 +36,7 @@ class Database:
     def get_avg_ACTCOST(self):
         return round(float(db.session.query(func.avg(PrescribingData.ACT_cost).label('average_ACT')).first()[0]), 2)
 
-        
+    def get_unique_drugs(self):
+        return db.session.query(PrescribingData.BNF_name).distinct().count()
+
+    #def get_most_prescribed(self):

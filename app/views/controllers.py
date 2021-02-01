@@ -56,5 +56,5 @@ def generate_barchart_data():
 
 def generate_data_for_tiles():
     """Generate the data for the four home page titles."""
-    return db_mod.get_total_number_items(), db_mod.get_avg_ACTCOST()
+    return db_mod.get_total_number_items(), db_mod.get_avg_ACTCOST(), db_mod.get_unique_drugs()
 
