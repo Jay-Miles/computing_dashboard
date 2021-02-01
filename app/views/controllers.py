@@ -40,9 +40,9 @@ def home():
                            pct={'data': bar_values, 'labels': bar_labels},
                            pct_list=pcts, pct_data=selected_pct_data)
 
-def generate_data_for_tiles():
-    """Generate the data for the four home page titles."""
-    return [db_mod.get_total_number_items()]
+# def generate_data_for_tiles():
+#     """Generate the data for the four home page titles."""
+#     return [db_mod.get_total_number_items()]
 
 def generate_barchart_data():
     """Generate the data needed to populate the barchart."""
@@ -56,5 +56,5 @@ def generate_barchart_data():
 
 def generate_data_for_tiles():
     """Generate the data for the four home page titles."""
-    return db_mod.get_total_number_items(), db_mod.get_avg_ACTCOST(), db_mod.get_unique_drugs()
+    return db_mod.get_total_number_items(), db_mod.get_avg_ACTCOST(), db_mod.get_top_prescribed_item(), db_mod.get_unique_drugs() 
 
