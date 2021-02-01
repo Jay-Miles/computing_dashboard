@@ -54,3 +54,7 @@ def generate_barchart_data():
     pct_codes = [r[0] for r in pct_codes]
     return [data_values, pct_codes]
 
+def generate_data_for_tiles():
+    """Generate the data for the four home page titles."""
+    return db_mod.get_total_number_items(), db_mod.get_avg_ACTCOST()
+
