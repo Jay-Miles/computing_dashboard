@@ -41,7 +41,7 @@ class Database:
         total_prescription = db.session.query(func.sum(PrescribingData.quantity).label('total')).first()
         top_pres_item = db.session.query(func.max(PrescribingData.quantity).label('top_pres'), PrescribingData.BNF_name).first()
         list = (top_pres_item[0], top_pres_item[1], round((top_pres_item[0]/ total_prescription[0]* 100), 2)) 
-        print(list)
+        # print(list)
         return list
 
     def get_unique_drugs(self):
