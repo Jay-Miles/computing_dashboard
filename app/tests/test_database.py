@@ -9,7 +9,7 @@ DESCRIPTION:   Suite of tests for testing the dashboards database
 """
 
 import unittest
-#from app import app
+from app import app
 from app.database.controllers import Database
 
 class DatabaseTests(unittest.TestCase):
@@ -25,6 +25,10 @@ class DatabaseTests(unittest.TestCase):
     def test_get_total_number_items(self):
         """Test that the total number of itmems returns the correct value."""
         self.assertEquals(self.db_mod.get_total_number_items(), 8218165)
+
+    def test_get_unique_drugs(self):
+        """Test that the total number of unique drugs returns the correct value."""
+        self.assertEquals(self.db_mod.get_unique_drugs(), 13922)
 
 if __name__ == "__main__":
     unittest.main()
