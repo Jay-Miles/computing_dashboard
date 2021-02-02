@@ -38,10 +38,20 @@ class Database:
         
     def get_top_prescribed_item(self):
         # return db.session.query(func.max(PrescribingData.quantity).label('top_pres'))
-        total_prescription = db.session.query(func.sum(PrescribingData.quantity).label('total')).first()
-        top_pres_item = db.session.query(func.max(PrescribingData.quantity).label('top_pres'), PrescribingData.BNF_name).first()
+        top_pres_item = db.session.execute(''
+        ' SELECT sum(items) AS total_number, BNFNAME' 
+        '   FROM practice_level_prescribing' 
+        '   GROUP BY BNFNAME'
+        '   ORDER BY total_number DESC LIMIT 1').first()
+        total_prescription = db.session.query(func.sum(PrescribingData.items).label('top_pres'), PrescribingData.BNF_name).first()
+        print(total_prescription)
+
         list = (top_pres_item[0], top_pres_item[1], round((top_pres_item[0]/ total_prescription[0]* 100), 2)) 
-        # print(list)
+        print(list)
+
+        # print(db.session.execute('select BNFNAME'
+        #  ' from practice_level_prescribing').first())
+
         return list
 
     def get_unique_drugs(self):
