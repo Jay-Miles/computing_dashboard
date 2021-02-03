@@ -34,6 +34,24 @@ class Database:
         return db.session.query(PrescribingData).filter(PrescribingData.PCT == pct).limit(n).all()
 
     def get_avg_ACTCOST(self):
+        """Return average cost of all items"""
         return round(float(db.session.query(func.avg(PrescribingData.ACT_cost).label('average_ACT')).first()[0]), 2)
-
         
+    def get_top_prescribed_item(self):
+        """Return a list of the name top prescribed item, its count and the percentage out of all items"""
+
+        top_pres_item = db.session.execute(''
+        ' SELECT sum(items) AS total_number, BNFNAME' 
+        '   FROM practice_level_prescribing' 
+        '   GROUP BY BNFNAME'
+        '   ORDER BY total_number DESC LIMIT 1').first()
+
+        total_prescription = db.session.query(func.sum(PrescribingData.items).label('top_pres'), PrescribingData.BNF_name).first()
+        # (total_count, item, percentage)
+
+        return (top_pres_item[0], top_pres_item[1], round((top_pres_item[0]/ total_prescription[0]* 100), 2)) 
+
+
+    def get_unique_drugs(self):
+        """Return the total number of distinct items"""
+        return db.session.query(PrescribingData.BNF_name).distinct().count()
