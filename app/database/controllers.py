@@ -40,11 +40,9 @@ class Database:
     def get_top_prescribed_item(self):
         """Return a list of the name top prescribed item, its count and the percentage out of all items"""
 
-        top_pres_item = db.session.execute(''
-        ' SELECT sum(items) AS total_number, BNFNAME' 
-        '   FROM practice_level_prescribing' 
-        '   GROUP BY BNFNAME'
-        '   ORDER BY total_number DESC LIMIT 1').first()
+        top_pres_item = top_pres_item = db.session.query(func.sum(PrescribingData.items).label('top_pres'), PrescribingData.BNF_name).\
+                        group_by(PrescribingData.BNF_name).\
+                        order_by(PrescribingData.items.desc()).first()
 
         total_prescription = db.session.query(func.sum(PrescribingData.items).label('top_pres'), PrescribingData.BNF_name).first()
         # (total_count, item, percentage)
