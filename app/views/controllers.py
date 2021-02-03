@@ -34,6 +34,8 @@ def home():
     bar_values = bar_data[0]
     bar_labels = bar_data[1]
     title_data_items = generate_data_for_tiles()
+    title_data_pct = generate_data_for_pcts()
+    print(title_data_pct)
 
     # render the HTML page passing in relevant data
     return render_template('dashboard/index.html', tile_data=title_data_items,
@@ -58,3 +60,7 @@ def generate_data_for_tiles():
     """Generate the data for the four home page titles."""
     return db_mod.get_total_number_items(), db_mod.get_avg_ACTCOST(), db_mod.get_top_prescribed_item(), db_mod.get_unique_drugs() 
 
+def generate_data_for_pcts():
+    """Generate the data for the four home page titles."""
+    total_infection_drugs = total_infection_drugs()
+    return ((db_mod.get_infection_drug_percentage_antibacterial()/total_infection_drugs)*100), ((db_mod.get_infection_drug_percentage_antibacterial()/total_infection_drugs)*100), ((db_mod.get_infection_drug_percentage_antiviral()/total_infection_drugs)*100), ((db_mod.get_infection_drug_percentage_antiprotozoal()/total_infection_drugs)*100), ((db_mod.get_infection_drug_percentage_anthelmintics()/total_infection_drugs)*100),
