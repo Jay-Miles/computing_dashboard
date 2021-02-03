@@ -32,8 +32,8 @@ class DatabaseTests(unittest.TestCase):
 
     def get_top_prescribed_item(self):
         """Test that the top prescribed item is identified correctly."""
-        self.assertEquals(self.db_mod.get_top_prescribed_item(), (869879, 
-        'Methadone HCl_Oral Soln 1mg/1ml S/F', 0.14))
+        self.assertEquals(self.db_mod.get_top_prescribed_item(), (Omeprazole_Cap E/C 20mg
+Quantity: 226307 2.75%))
 
     def test_get_unique_drugs(self):
         """Test that the total number of unique drugs returns the correct value."""
