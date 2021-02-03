@@ -62,5 +62,5 @@ def generate_data_for_tiles():
 
 def generate_data_for_pcts():
     """Generate the data for the four home page titles."""
-    total_infection_drugs = total_infection_drugs()
+    total_infection_drugs = db_mod.total_infection_drugs()
     return ((db_mod.get_infection_drug_percentage_antibacterial()/total_infection_drugs)*100), ((db_mod.get_infection_drug_percentage_antibacterial()/total_infection_drugs)*100), ((db_mod.get_infection_drug_percentage_antiviral()/total_infection_drugs)*100), ((db_mod.get_infection_drug_percentage_antiprotozoal()/total_infection_drugs)*100), ((db_mod.get_infection_drug_percentage_anthelmintics()/total_infection_drugs)*100),
