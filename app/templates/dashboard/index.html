@@ -240,7 +240,9 @@
                   <h6 class="m-0 font-weight-bold text-primary">Infection treatment drug as % of all infection treatments</h6>
                 </div>
                 <div class="card-body">
-
+                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Antibacterial Drugs: {{ tile_pct[0] }}%</div>
+                <div class="progress progress-sm mr-2">
+                            <div class="progress-bar bg-info" role="progressbar" style="width: {{ tile_pct[0] }}%" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
               </div>
 

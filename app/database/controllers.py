@@ -54,25 +54,25 @@ class Database:
         return db.session.query(PrescribingData.BNF_name).distinct().count()
 
     def get_infection_drug_percentage_antibacterial(self):
-        antibacterial_num = db.session.query(func.count(PrescribingData.items)).filter(PrescribingData.BNF_code.like('0501%')).first()[0]
+        antibacterial_num = db.session.query(func.sum(PrescribingData.items)).filter(PrescribingData.BNF_code.like('0501%')).first()[0]
         return antibacterial_num
 
     def get_infection_drug_percentage_antifungal(self):
-        antifungal_num = db.session.query(func.count(PrescribingData.items)).filter(PrescribingData.BNF_code.like('0502%')).first()[0]
+        antifungal_num = db.session.query(func.sum(PrescribingData.items)).filter(PrescribingData.BNF_code.like('0502%')).first()[0]
         return antifungal_num
 
     def get_infection_drug_percentage_antiviral(self):
-        antiviral_num = db.session.query(func.count(PrescribingData.items)).filter(PrescribingData.BNF_code.like('0503%')).first()[0]
+        antiviral_num = db.session.query(func.sum(PrescribingData.items)).filter(PrescribingData.BNF_code.like('0503%')).first()[0]
         return antiviral_num
 
     def get_infection_drug_percentage_antiprotozoal(self):
-        antiprotozoal_num = db.session.query(func.count(PrescribingData.items)).filter(PrescribingData.BNF_code.like('0504%')).first()[0]
+        antiprotozoal_num = db.session.query(func.sum(PrescribingData.items)).filter(PrescribingData.BNF_code.like('0504%')).first()[0]
         return antiprotozoal_num
 
     def get_infection_drug_percentage_anthelmintics(self):
-        anthelmintics_num = db.session.query(func.count(PrescribingData.items)).filter(PrescribingData.BNF_code.like('0505%')).first()[0]
+        anthelmintics_num = db.session.query(func.sum(PrescribingData.items)).filter(PrescribingData.BNF_code.like('0505%')).first()[0]
         return anthelmintics_num
     
     def total_infection_drugs(self):
-        total_infection_drugs = db.session.query(func.count(PrescribingData.items)).filter(PrescribingData.BNF_code.like('05%')).first()[0]
+        total_infection_drugs = db.session.query(func.sum(PrescribingData.items)).filter(PrescribingData.BNF_code.like('05%')).first()[0]
         return total_infection_drugs

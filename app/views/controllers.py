@@ -38,7 +38,7 @@ def home():
     print(title_data_pct)
 
     # render the HTML page passing in relevant data
-    return render_template('dashboard/index.html', tile_data=title_data_items,
+    return render_template('dashboard/index.html', tile_data=title_data_items,tile_pct=title_data_pct,
                            pct={'data': bar_values, 'labels': bar_labels},
                            pct_list=pcts, pct_data=selected_pct_data)
 
@@ -63,4 +63,8 @@ def generate_data_for_tiles():
 def generate_data_for_pcts():
     """Generate the data for the four home page titles."""
     total_infection_drugs = db_mod.total_infection_drugs()
-    return ((db_mod.get_infection_drug_percentage_antibacterial()/total_infection_drugs)*100), ((db_mod.get_infection_drug_percentage_antibacterial()/total_infection_drugs)*100), ((db_mod.get_infection_drug_percentage_antiviral()/total_infection_drugs)*100), ((db_mod.get_infection_drug_percentage_antiprotozoal()/total_infection_drugs)*100), ((db_mod.get_infection_drug_percentage_anthelmintics()/total_infection_drugs)*100),
+    list = ((db_mod.get_infection_drug_percentage_antibacterial()/total_infection_drugs)*100), ((db_mod.get_infection_drug_percentage_antibacterial()/total_infection_drugs)*100), ((db_mod.get_infection_drug_percentage_antiviral()/total_infection_drugs)*100), ((db_mod.get_infection_drug_percentage_antiprotozoal()/total_infection_drugs)*100), ((db_mod.get_infection_drug_percentage_anthelmintics()/total_infection_drugs)*100)
+    for number in list:
+        number = round(number, 2)
+    print (list)
+    return list
