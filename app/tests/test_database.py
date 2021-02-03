@@ -26,14 +26,14 @@ class DatabaseTests(unittest.TestCase):
         """Test that the total number of itmems returns the correct value."""
         self.assertEquals(self.db_mod.get_total_number_items(), 8218165)
 
-    def get_avg_ACTCOST(self):
+    def test_get_avg_ACTCOST(self):
         """Test that the average ACT cost is correct."""
         self.assertEquals(self.db_mod.get_avg_ACTCOST(), 76.22)
 
-    def get_top_prescribed_item(self):
+    def test_get_top_prescribed_item(self):
         """Test that the top prescribed item is identified correctly."""
         self.assertEquals(self.db_mod.get_top_prescribed_item(), (
-            'Omeprazole_Cap E/C 20mg Quantity: 226307 2.75%'))
+            226307, 'Omeprazole_Cap E/C 20mg', 2.75))
 
     def test_get_unique_drugs(self):
         """Test that the total number of unique drugs returns the correct value."""
