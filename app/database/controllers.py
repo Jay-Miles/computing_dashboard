@@ -49,7 +49,26 @@ class Database:
 
         return (top_pres_item[0], top_pres_item[1], round((top_pres_item[0]/ total_prescription[0]* 100), 2)) 
 
-
     def get_unique_drugs(self):
         """Return the total number of distinct items"""
         return db.session.query(PrescribingData.BNF_name).distinct().count()
+
+    def get_infection_drug_percentage_antibacterial(self):
+        antibacterial_num = db.session.query(func.count(PrescribingData.items)).filter(PrescribingData.BNF_code.like('0501%')).all()
+        return antibacterial_num
+
+    def get_infection_drug_percentage_antifungal(self):
+        antifungal_num = db.session.query(func.count(PrescribingData.items)).filter(PrescribingData.BNF_code.like('0502%')).all()
+        return antifungal_num
+
+    def get_infection_drug_percentage_antiviral(self):
+        antiviral_num = db.session.query(func.count(PrescribingData.items)).filter(PrescribingData.BNF_code.like('0503%')).all()
+        return antiviral_num
+
+    def get_infection_drug_percentage_antiprotozoal(self):
+        antiprotozoal_num = db.session.query(func.count(PrescribingData.items)).filter(PrescribingData.BNF_code.like('0504%')).all()
+        return antiprotozoal_num
+
+    def get_infection_drug_percentage_anthelmintics(self):
+        anthelmintics_num = db.session.query(func.count(PrescribingData.items)).filter(PrescribingData.BNF_code.like('0505%')).all()
+        return anthelmintics_num
