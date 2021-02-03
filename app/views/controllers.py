@@ -63,8 +63,8 @@ def generate_data_for_tiles():
 def generate_data_for_pcts():
     """Generate the data for the four home page titles."""
     total_infection_drugs = db_mod.total_infection_drugs()
-    list = ((db_mod.get_infection_drug_percentage_antibacterial()/total_infection_drugs)*100), ((db_mod.get_infection_drug_percentage_antibacterial()/total_infection_drugs)*100), ((db_mod.get_infection_drug_percentage_antiviral()/total_infection_drugs)*100), ((db_mod.get_infection_drug_percentage_antiprotozoal()/total_infection_drugs)*100), ((db_mod.get_infection_drug_percentage_anthelmintics()/total_infection_drugs)*100)
-    for number in list:
-        number = round(number, 2)
-    print (list)
-    return list
+    list = ((db_mod.get_infection_drug_percentage_antibacterial()/total_infection_drugs)*100), ((db_mod.get_infection_drug_percentage_antifungal()/total_infection_drugs)*100), ((db_mod.get_infection_drug_percentage_antiviral()/total_infection_drugs)*100), ((db_mod.get_infection_drug_percentage_antiprotozoal()/total_infection_drugs)*100), ((db_mod.get_infection_drug_percentage_anthelmintics()/total_infection_drugs)*100)
+    rounded_list = [round(num, 2) for num in list]
+    print (rounded_list)
+    print(sum(rounded_list))
+    return rounded_list
