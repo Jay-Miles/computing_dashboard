@@ -72,3 +72,7 @@ class Database:
     def get_infection_drug_percentage_anthelmintics(self):
         anthelmintics_num = db.session.query(func.count(PrescribingData.items)).filter(PrescribingData.BNF_code.like('0505%')).all()
         return anthelmintics_num
+    
+    def total_infection_drugs(self):
+        total_infection_drugs = db.session.query(func.count(PrescribingData.items)).filter(PrescribingData.BNF_code.like('05%')).all()
+        return total_infection_drugs
