@@ -11,7 +11,7 @@ DESCRIPTION:   Suite of tests for testing the dashboards database
 import unittest
 import os
 import inspect
-
+import re
 from app import app
 from app.database.controllers import Database
 from selenium import webdriver
@@ -48,6 +48,7 @@ class DatabaseTests(unittest.TestCase):
         """Test that the creatinine calculator produces the correct output."""
         actual_path = os.path.dirname(
             os.path.abspath(inspect.stack()[0][1]))
+        actual_path = re.sub("/app/tests", "", actual_path)
         path_to_html = actual_path + '/app/templates/dashboard/index.html'
         print(path_to_html)
         driver = self.driver()
