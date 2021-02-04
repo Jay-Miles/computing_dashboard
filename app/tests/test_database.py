@@ -41,25 +41,26 @@ class DatabaseTests(unittest.TestCase):
         
     def test_get_infection_drug_percentage_antibacterial(self):
         """Test that the percentage of antibacterials returns the correct value."""
-        self.assertEquals(round(((self.db_mod.get_infection_drug_percentage_antibacterial()/self.db_mod.total_infection_drugs)*100), 82.25), 2)
+        self.assertEquals(self.db_mod.get_infection_drug_percentage_antibacterial(), 196186)
 
     def test_get_infection_drug_percentage_antifungal(self):
         """Test that the percentage of antifungal returns the correct value."""
-        self.assertEquals(round(((self.db_mod.get_infection_drug_percentage_antifungal()/self.db_mod.total_infection_drugs)*100), 5.22), 2)
+        self.assertEquals(self.db_mod.get_infection_drug_percentage_antifungal(), 12439)
         
     def test_get_infection_drug_percentage_antiviral(self):
         """Test that the percentage of antiviral returns the correct value."""
-        self.assertEquals(round(((self.db_mod.get_infection_drug_percentage_antiviral()/self.db_mod.total_infection_drugs)*100), 2.68), 2)
+        self.assertEquals(self.db_mod.get_infection_drug_percentage_antiviral(),6383)
 
     def test_get_infection_drug_percentage_antiprotozoal(self):
         """Test that the percentage of antiprotozoal returns the correct value."""
-        self.assertEquals(round(((self.db_mod.get_infection_drug_percentage_antiprotozoal()/self.db_mod.total_infection_drugs)*100), 9.62), 2)
+        self.assertEquals(self.db_mod.get_infection_drug_percentage_antiprotozoal(), 22953)
 
     def test_get_infection_drug_percentage_anthelmintic(self):
         """Test that the percentage of anthelmintic returns the correct value."""
-        self.assertEquals(round(((self.db_mod.get_infection_drug_percentage_anthelmintics()/self.db_mod.total_infection_drugs)*100), 0.23), 2)
+        self.assertEquals(self.db_mod.get_infection_drug_percentage_anthelmintics(), 551)
 
     def test_total_infection_drugs(self):
         self.assertEquals(self.db_mod.total_infection_drugs(), 238512)
+
 if __name__ == "__main__":
     unittest.main()
