@@ -14,6 +14,7 @@ import inspect
 import re
 from app import app
 from app.database.controllers import Database
+from pathlib import Path
 from selenium import webdriver
 
 class DatabaseTests(unittest.TestCase):
@@ -21,7 +22,11 @@ class DatabaseTests(unittest.TestCase):
     def setUp(self):
         """Run prior to each test."""
         self.db_mod = Database()
-        self.driver = webdriver.Chrome('./chromedriver')
+        
+        path = os.path.abspath(os.getcwd())
+        rel_path = 'chromedriver'
+        whole_path = os.path.join(path, rel_path)
+        self.driver = webdriver.Chrome(whole_path)
 
     def tearDown(self):
         """Run post each test."""
@@ -46,13 +51,12 @@ class DatabaseTests(unittest.TestCase):
 
     def test_creatinine_calculator(self):
         """Test that the creatinine calculator produces the correct output."""
-        actual_path = os.path.dirname(
-            os.path.abspath(inspect.stack()[0][1]))
-        actual_path = re.sub("/app/tests", "", actual_path)
-        path_to_html = actual_path + '/app/templates/dashboard/index.html'
-        print(path_to_html)
-        driver = self.driver()
-        driver.get(path_to_html)
+        driver = self.driver
+        path = os.path.abspath(os.getcwd())
+        rel_path = 'app/templates/dashboard/index.html'
+        whole_path = os.path.join(path, rel_path)
+        driver.get(whole_path)
+        
         driver.find_element_by_id('pt_Age').send_keys(50)
         driver.find_element_by_id('pt_weight').send_keys(50)
         driver.find_element_by_id('pt_serum').send_keys(50)
