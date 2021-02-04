@@ -1,4 +1,4 @@
-#H1 CONTENTS OF THIS FILE
+# CONTENTS OF THIS FILE
 ---------------------
 
  * Introduction
@@ -8,7 +8,7 @@
  
  * Developers
  
-#H1 INTRODUCTION
+# INTRODUCTION
 ------------
 
 The Prescribing dashboard provides primary care trust level prescribing data which is accessible to CCGs and physicians
@@ -23,10 +23,12 @@ A PDF report can be generated from the main page to summarise the data.
  * To submit bug reports and feature suggestions, or track changes:
    https://github.com/uomdatascience/dashboard-reticulated2021/issues
    
-#H1 REQUIREMENTS
+# REQUIREMENTS
 ------------
 
 The dashboard requires:
+
+This app must be run on Google Chrome
 
  * Flask: conda install -c anaconda flask
  * Flask-squalchemy: conda install -c conda-forge flask-sqlalchemy
@@ -38,16 +40,17 @@ The test modules require:
  * nose: conda install -c conda-forge nose2
  * app.database.controllers: from app.database.controllers import Database
  * os module: import os
+ * the driver for your browser must be installed in the dashboard-reticulated2021 folder
 
  
-#H1 CONFIGURATION
+# CONFIGURATION
 -------------
 
 The module has no menu or modifiable settings. There is no configuration. When
 enabled, the module will prevent the links from appearing. To get the links
 back, disable the module and clear caches.
 
-#H1 TROUBLESHOOTING
+# TROUBLESHOOTING
 ---------------
 
  * If the page does not display, check the following:
@@ -56,9 +59,9 @@ back, disable the module and clear caches.
    
 
    
-#H1 DEVELOPERS
+# DEVELOPERS
 -----------
 
-*PRODUCT OWNER - Igor Malashchuk
-*SPRINT LEADER - Jay Miles
-*DEVELOPERS - Yongwun Ju, Vivevk Kingsley, Sophie Maxey
+*PRODUCT OWNER - Igor Malashchuk<br>
+*SPRINT MASTER - Jay Miles<br>
+*DEVELOPERS - Yongwun Ju, Viveck Kingsley, Sophie Maxey<br>
