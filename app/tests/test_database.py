@@ -48,7 +48,11 @@ class DatabaseTests(unittest.TestCase):
     def test_get_unique_drugs(self):
         """Test that the total number of unique drugs returns the correct value."""
         self.assertEquals(self.db_mod.get_unique_drugs(), 13922)
-        
+    
+    def test_get_distinct_pcts(self):
+        """Test that checks the correct number of PCTs are in the list"""
+        self.assertEquals(len(self.db_mod.get_distinct_pcts()), 34)
+    
     def test_get_infection_drug_percentage_antibacterial(self):
         """Test that the percentage of antibacterials returns the correct value."""
         self.assertEquals(self.db_mod.get_infection_drug_percentage_antibacterial(), 196186)
