@@ -73,7 +73,15 @@
         </div>
       </li>
 
-      <!-- Divider -->
+      <!-- Nav Item - Utilities Collapse Menu -->
+      <li class="nav-item">
+        <div class="nav-link" onclick="window.print();">
+          <i class="print_button"></i>
+          <span style="font-weight:bold;">Generate report</span>
+        </div>
+      </li>
+
+        <!-- Divider -->
       <hr class="sidebar-divider">
     </ul>
     <!-- End of Sidebar -->
@@ -307,12 +315,12 @@
                     <input type="number" min="1" max="200" id="pt_weight" />
                     <br /><br />
                     <p>Serum creatinine (micromol/L):</p>
-                    <input type="number" min="1" max="120" id="pt_serum" />
+                    <input type="number" min="1" max="200" id="pt_serum" />
                     <br />
                   </div>
                   <br />
                   <hr />
-                  <button type="button" class="btn btn-primary" onclick=clearance()>Calculate</button>
+                  <button id=calculate-button type="button" class="btn btn-primary" onclick=clearance()>Calculate</button>
                   <button type="button" class="btn btn-danger" onclick="popup.hideCeatCalcFormPopup();">Close</button>
                   <div>
                    <br /><br />

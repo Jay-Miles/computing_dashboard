@@ -9,14 +9,19 @@ DESCRIPTION:   Suite of tests for testing the dashboards database
 """
 
 import unittest
+import os
+import inspect
+import re
 from app import app
 from app.database.controllers import Database
+from selenium import webdriver
 
 class DatabaseTests(unittest.TestCase):
     """Class for testing database functionality and connection."""
     def setUp(self):
         """Run prior to each test."""
         self.db_mod = Database()
+        self.driver = webdriver.Chrome('./chromedriver')
 
     def tearDown(self):
         """Run post each test."""
@@ -38,6 +43,21 @@ class DatabaseTests(unittest.TestCase):
     def test_get_unique_drugs(self):
         """Test that the total number of unique drugs returns the correct value."""
         self.assertEquals(self.db_mod.get_unique_drugs(), 13922)
+
+    def test_creatinine_calculator(self):
+        """Test that the creatinine calculator produces the correct output."""
+        actual_path = os.path.dirname(
+            os.path.abspath(inspect.stack()[0][1]))
+        actual_path = re.sub("/app/tests", "", actual_path)
+        path_to_html = actual_path + '/app/templates/dashboard/index.html'
+        print(path_to_html)
+        driver = self.driver()
+        driver.get(path_to_html)
+        driver.find_element_by_id('pt_Age').send_keys(50)
+        driver.find_element_by_id('pt_weight').send_keys(50)
+        driver.find_element_by_id('pt_serum').send_keys(50)
+        driver.find_element_by_id('male').send_keys()
+        driver.find_element_by_id('calculate-button').click()
 
 if __name__ == "__main__":
     unittest.main()
