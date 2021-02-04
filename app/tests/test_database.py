@@ -55,7 +55,11 @@ class DatabaseTests(unittest.TestCase):
 
     def test_get_prescribed_items_per_pct(self):
         """Test that checks that the first PCT prescribed items total is correct"""
-        self.assertEquals(self.db_mod.get_prescribed_items_per_pct()[0][0], 229169)    
+        self.assertEquals(self.db_mod.get_prescribed_items_per_pct()[0][0], 229169)   
+        
+    def test_get_n_data_for_pct(self, pct, n):
+        """Test that checks that all data for given PCT is returned"""
+        self.assertEquals(self.db_mod.get_n_data_for_pct('01R', 5)[0], <PrescribingData 32467>)
 
     def test_get_infection_drug_percentage_antibacterial(self):
         """Test that the percentage of antibacterials returns the correct value."""
