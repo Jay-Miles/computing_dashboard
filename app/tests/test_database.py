@@ -22,11 +22,6 @@ class DatabaseTests(unittest.TestCase):
     def setUp(self):
         """Run prior to each test."""
         self.db_mod = Database()
-        
-        path = os.path.abspath(os.getcwd())
-        rel_path = 'chromedriver'
-        whole_path = os.path.join(path, rel_path)
-        self.driver = webdriver.Chrome(whole_path)
 
     def tearDown(self):
         """Run post each test."""
@@ -57,9 +52,9 @@ class DatabaseTests(unittest.TestCase):
         """Test that checks that the first PCT prescribed items total is correct"""
         self.assertEquals(self.db_mod.get_prescribed_items_per_pct()[0][0], 229169)   
         
-    def test_get_n_data_for_pct(self, pct, n):
+    def test_get_n_data_for_pct(self):
         """Test that checks that all data for given PCT is returned"""
-        self.assertEquals(self.db_mod.get_n_data_for_pct('01R', 5)[0], <PrescribingData 32467>)
+        self.assertEquals(str(self.db_mod.get_n_data_for_PCT('01R', 5)[0]), '<PrescribingData 32467>')
 
     def test_get_infection_drug_percentage_antibacterial(self):
         """Test that the percentage of antibacterials returns the correct value."""
@@ -86,11 +81,16 @@ class DatabaseTests(unittest.TestCase):
 
     def test_creatinine_calculator(self):
         """Test that the creatinine calculator produces the correct output."""
+        path1 = os.path.abspath(os.getcwd())
+        rel_path1 = 'chromedriver'
+        whole_path1 = os.path.join(path1, rel_path1)
+        self.driver = webdriver.Chrome(whole_path1)
+
         driver = self.driver
-        path = os.path.abspath(os.getcwd())
-        rel_path = 'app/templates/dashboard/index.html'
-        whole_path = os.path.join(path, rel_path)
-        driver.get(whole_path)
+        path2 = os.path.abspath(os.getcwd())
+        rel_path2 = 'app/templates/dashboard/index.html'
+        whole_path2 = os.path.join(path2, rel_path2)
+        driver.get(whole_path2)
         
         driver.find_element_by_id('pt_Age').send_keys(50)
         driver.find_element_by_id('pt_weight').send_keys(50)
