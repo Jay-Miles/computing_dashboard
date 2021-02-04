@@ -34,9 +34,11 @@ def home():
     bar_values = bar_data[0]
     bar_labels = bar_data[1]
     title_data_items = generate_data_for_tiles()
+    title_data_pct = generate_data_for_pcts()
+    print(title_data_pct)
 
     # render the HTML page passing in relevant data
-    return render_template('dashboard/index.html', tile_data=title_data_items,
+    return render_template('dashboard/index.html', tile_data=title_data_items,tile_pct=title_data_pct,
                            pct={'data': bar_values, 'labels': bar_labels},
                            pct_list=pcts, pct_data=selected_pct_data)
 
@@ -58,3 +60,11 @@ def generate_data_for_tiles():
     """Generate the data for the four home page titles."""
     return db_mod.get_total_number_items(), db_mod.get_avg_ACTCOST(), db_mod.get_top_prescribed_item(), db_mod.get_unique_drugs() 
 
+def generate_data_for_pcts():
+    """Generate the data for the four home page titles."""
+    total_infection_drugs = db_mod.total_infection_drugs()
+    list = ((db_mod.get_infection_drug_percentage_antibacterial()/total_infection_drugs)*100), ((db_mod.get_infection_drug_percentage_antifungal()/total_infection_drugs)*100), ((db_mod.get_infection_drug_percentage_antiviral()/total_infection_drugs)*100), ((db_mod.get_infection_drug_percentage_antiprotozoal()/total_infection_drugs)*100), ((db_mod.get_infection_drug_percentage_anthelmintics()/total_infection_drugs)*100)
+    rounded_list = [round(num, 2) for num in list]
+    print (rounded_list)
+    print(sum(rounded_list))
+    return rounded_list

@@ -48,6 +48,29 @@ class DatabaseTests(unittest.TestCase):
     def test_get_unique_drugs(self):
         """Test that the total number of unique drugs returns the correct value."""
         self.assertEquals(self.db_mod.get_unique_drugs(), 13922)
+        
+    def test_get_infection_drug_percentage_antibacterial(self):
+        """Test that the percentage of antibacterials returns the correct value."""
+        self.assertEquals(self.db_mod.get_infection_drug_percentage_antibacterial(), 196186)
+
+    def test_get_infection_drug_percentage_antifungal(self):
+        """Test that the percentage of antifungal returns the correct value."""
+        self.assertEquals(self.db_mod.get_infection_drug_percentage_antifungal(), 12439)
+        
+    def test_get_infection_drug_percentage_antiviral(self):
+        """Test that the percentage of antiviral returns the correct value."""
+        self.assertEquals(self.db_mod.get_infection_drug_percentage_antiviral(),6383)
+
+    def test_get_infection_drug_percentage_antiprotozoal(self):
+        """Test that the percentage of antiprotozoal returns the correct value."""
+        self.assertEquals(self.db_mod.get_infection_drug_percentage_antiprotozoal(), 22953)
+
+    def test_get_infection_drug_percentage_anthelmintic(self):
+        """Test that the percentage of anthelmintic returns the correct value."""
+        self.assertEquals(self.db_mod.get_infection_drug_percentage_anthelmintics(), 551)
+
+    def test_total_infection_drugs(self):
+        self.assertEquals(self.db_mod.total_infection_drugs(), 238512)
 
     def test_creatinine_calculator(self):
         """Test that the creatinine calculator produces the correct output."""
