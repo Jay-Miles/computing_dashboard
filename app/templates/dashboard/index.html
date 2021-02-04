@@ -73,7 +73,15 @@
         </div>
       </li>
 
-      <!-- Divider -->
+      <!-- Nav Item - Utilities Collapse Menu -->
+      <li class="nav-item">
+        <div class="nav-link" onclick="window.print();">
+          <i class="print_button"></i>
+          <span style="font-weight:bold;">Generate report</span>
+        </div>
+      </li>
+
+        <!-- Divider -->
       <hr class="sidebar-divider">
     </ul>
     <!-- End of Sidebar -->
@@ -295,25 +303,29 @@
                   <p>Sex of patient:</p>
                   <div>
                     <label class="radio-inline">
-                      <input type="radio" name="sex" value="m"> Male
+                      <input type="radio" name="sex" id="male"> Male
                     </label>
                     <label class="radio-inline">
-                      <input type="radio" name="sex" value="f"> Female
+                      <input type="radio" name="sex" id="female"> Female
                     </label>
                     <p>Age of patient (years):</p>
-                    <input type="number" min="1" max="120" name="patients-age" />
+                    <input type="number" min="1" max="120" id="pt_Age" />
                     <br /><br />
                     <p>Weight of patient (kg):</p>
-                    <input type="number" min="1" max="120" name="patients-weight" />
+                    <input type="number" min="1" max="200" id="pt_weight" />
                     <br /><br />
                     <p>Serum creatinine (micromol/L):</p>
-                    <input type="number" min="1" max="120" name="patients-serum" />
+                    <input type="number" min="1" max="200" id="pt_serum" />
                     <br />
                   </div>
                   <br />
                   <hr />
-                  <button type="button" class="btn btn-primary">Calculate</button>
+                  <button id=calculate-button type="button" class="btn btn-primary" onclick=clearance()>Calculate</button>
                   <button type="button" class="btn btn-danger" onclick="popup.hideCeatCalcFormPopup();">Close</button>
+                  <div>
+                   <br /><br />
+                      <p style="color:blue; font-weight:bold; font-size:20px">Creatinine Clearance: <val id="clearance"></val> (mL/min)</p>
+                  </div>
                 </div>
               </div>
           </div>
@@ -374,5 +386,35 @@
   <script src="{{ url_for('static', filename='js/sb-admin-2.min.js') }}"></script>
 
 </body>
+<script>
+        function clearance() {
 
+         var age =  document.getElementById("pt_Age").value;
+         var weight = document.getElementById("pt_weight").value;
+         var creatinine = document.getElementById("pt_serum").value;
+         if(document.getElementById('male').checked) {
+            var gender = "male";
+         }
+         else if(document.getElementById('female').checked){
+            var gender = "female";
+         }
+         var clearance;
+         if(gender=="male"){clearance = (((140-age)*weight*1.23)/(creatinine)).toFixed(1)};
+         if(gender=="female"){clearance = (((140-age)*weight*1.04)/(creatinine)).toFixed(1)};
+         if((age>=1 && age<=120) && (weight>=1 && weight<=200) && (creatinine>=1 && creatinine<=200) && gender)
+         { document.getElementById("clearance").innerHTML = clearance;}
+         else{
+             document.getElementById("clearance").innerHTML = "NA";
+             alert(
+             "To calculate Creatinine Clearance please:\n\n"+
+
+             "\tSelect patient's gender: Male or Female\n"  +
+             "\tProvide patient's age (1-120)\n" +
+             "\tProvide patient's weight (1-200kg)\n" +
+             "\tProvide patient's serum creatinine (1-200micromol/L)\n"
+         );
+         }
+        }
+
+</script>
 </html>
