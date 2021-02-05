@@ -11,10 +11,8 @@ DESCRIPTION:   Suite of tests for testing the dashboards database
 import unittest
 import os
 import inspect
-import re
 from app import app
 from app.database.controllers import Database
-from pathlib import Path
 from selenium import webdriver
 
 class DatabaseTests(unittest.TestCase):
