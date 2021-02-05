@@ -11,10 +11,8 @@ DESCRIPTION:   Suite of tests for testing the dashboards database
 import unittest
 import os
 import inspect
-import re
 from app import app
 from app.database.controllers import Database
-from pathlib import Path
 from selenium import webdriver
 
 class DatabaseTests(unittest.TestCase):
@@ -43,7 +41,19 @@ class DatabaseTests(unittest.TestCase):
     def test_get_unique_drugs(self):
         """Test that the total number of unique drugs returns the correct value."""
         self.assertEquals(self.db_mod.get_unique_drugs(), 13922)
+    
+    def test_get_distinct_pcts(self):
+        """Test that checks the correct number of PCTs are in the list and checks the correct number of PCTs are in the list"""
+        self.assertEquals(len(set(self.db_mod.get_distinct_pcts())), 34)    
+
+    def test_get_prescribed_items_per_pct(self):
+        """Test that checks that the first PCT prescribed items total is correct"""
+        self.assertEquals(self.db_mod.get_prescribed_items_per_pct()[0][0], 229169)   
         
+    def test_get_n_data_for_pct(self):
+        """Test that checks that all data for given PCT is returned"""
+        self.assertEquals(str(self.db_mod.get_n_data_for_PCT('01R', 5)[0]), '<PrescribingData 32467>')
+
     def test_get_infection_drug_percentage_antibacterial(self):
         """Test that the percentage of antibacterials returns the correct value."""
         self.assertEquals(self.db_mod.get_infection_drug_percentage_antibacterial(), 196186)
@@ -67,19 +77,18 @@ class DatabaseTests(unittest.TestCase):
     def test_total_infection_drugs(self):
         self.assertEquals(self.db_mod.total_infection_drugs(), 238512)
 
-    # def test_creatinine_calculator(self):
+    def test_creatinine_calculator(self):
+        """Test that the creatinine calculator produces the correct output."""
+        path1 = os.path.abspath(os.getcwd())
+        rel_path1 = 'chromedriver'
+        whole_path1 = os.path.join(path1, rel_path1)
+        self.driver = webdriver.Chrome(whole_path1)
 
-        # path = os.path.abspath(os.getcwd())
-        # rel_path = 'chromedriver'
-        # whole_path = os.path.join(path, rel_path)
-        # self.driver = webdriver.Chrome(whole_path)
-
-    #     """Test that the creatinine calculator produces the correct output."""
-    #     driver = self.driver
-    #     path = os.path.abspath(os.getcwd())
-    #     rel_path = 'app/templates/dashboard/index.html'
-    #     whole_path = os.path.join(path, rel_path)
-    #     driver.get(whole_path)
+        driver = self.driver
+        path2 = os.path.abspath(os.getcwd())
+        rel_path2 = 'app/templates/dashboard/index.html'
+        whole_path2 = os.path.join(path2, rel_path2)
+        driver.get(whole_path2)
         
     #     driver.find_element_by_id('pt_Age').send_keys(50)
     #     driver.find_element_by_id('pt_weight').send_keys(50)
