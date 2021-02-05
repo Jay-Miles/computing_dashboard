@@ -90,11 +90,15 @@ class DatabaseTests(unittest.TestCase):
         whole_path2 = os.path.join(path2, rel_path2)
         driver.get(whole_path2)
         
-        driver.find_element_by_id('pt_Age').send_keys(50)
-        driver.find_element_by_id('pt_weight').send_keys(50)
-        driver.find_element_by_id('pt_serum').send_keys(50)
-        driver.find_element_by_id('male').send_keys()
-        driver.find_element_by_id('calculate-button').click()
+    #     driver.find_element_by_id('pt_Age').send_keys(50)
+    #     driver.find_element_by_id('pt_weight').send_keys(50)
+    #     driver.find_element_by_id('pt_serum').send_keys(50)
+    #     driver.find_element_by_id('male').send_keys()
+    #     driver.find_element_by_id('calculate-button').click()
+
+    def test_get_antibiotic_total_in_gp_in_pct(self):
+        self.assertEquals(self.db_mod.get_antibiotic_total_in_gp_in_pct('116').first(), ('RECOVERY CENTRE BISHOP AUCKLAND', 1))
+
 
 if __name__ == "__main__":
     unittest.main()
