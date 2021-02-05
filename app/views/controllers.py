@@ -33,6 +33,7 @@ def home():
     else:
         # pick a default PCT to show
         selected_pct_data = db_mod.get_n_data_for_PCT(str(pcts[0]), 5)
+        selected_pct_gp_anti = db_mod.get_antibiotic_total_in_gp_in_pct(str(pcts[0]))
 
     # prepare data
     bar_data = generate_barchart_data()
