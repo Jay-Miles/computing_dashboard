@@ -22,11 +22,6 @@ class DatabaseTests(unittest.TestCase):
     def setUp(self):
         """Run prior to each test."""
         self.db_mod = Database()
-        
-        path = os.path.abspath(os.getcwd())
-        rel_path = 'chromedriver'
-        whole_path = os.path.join(path, rel_path)
-        self.driver = webdriver.Chrome(whole_path)
 
     def tearDown(self):
         """Run post each test."""
@@ -72,19 +67,29 @@ class DatabaseTests(unittest.TestCase):
     def test_total_infection_drugs(self):
         self.assertEquals(self.db_mod.total_infection_drugs(), 238512)
 
-    def test_creatinine_calculator(self):
-        """Test that the creatinine calculator produces the correct output."""
-        driver = self.driver
-        path = os.path.abspath(os.getcwd())
-        rel_path = 'app/templates/dashboard/index.html'
-        whole_path = os.path.join(path, rel_path)
-        driver.get(whole_path)
+    # def test_creatinine_calculator(self):
+
+        # path = os.path.abspath(os.getcwd())
+        # rel_path = 'chromedriver'
+        # whole_path = os.path.join(path, rel_path)
+        # self.driver = webdriver.Chrome(whole_path)
+
+    #     """Test that the creatinine calculator produces the correct output."""
+    #     driver = self.driver
+    #     path = os.path.abspath(os.getcwd())
+    #     rel_path = 'app/templates/dashboard/index.html'
+    #     whole_path = os.path.join(path, rel_path)
+    #     driver.get(whole_path)
         
-        driver.find_element_by_id('pt_Age').send_keys(50)
-        driver.find_element_by_id('pt_weight').send_keys(50)
-        driver.find_element_by_id('pt_serum').send_keys(50)
-        driver.find_element_by_id('male').send_keys()
-        driver.find_element_by_id('calculate-button').click()
+    #     driver.find_element_by_id('pt_Age').send_keys(50)
+    #     driver.find_element_by_id('pt_weight').send_keys(50)
+    #     driver.find_element_by_id('pt_serum').send_keys(50)
+    #     driver.find_element_by_id('male').send_keys()
+    #     driver.find_element_by_id('calculate-button').click()
+
+    def test_get_antibiotic_total_in_gp_in_pct(self):
+        self.assertEquals(self.db_mod.get_antibiotic_total_in_gp_in_pct('116').first(), ('RECOVERY CENTRE BISHOP AUCKLAND', 1))
+
 
 if __name__ == "__main__":
     unittest.main()

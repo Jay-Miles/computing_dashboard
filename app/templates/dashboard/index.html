@@ -31,6 +31,8 @@
         $(document).ready(function () {
             initializeMain();
             barChart.drawChart({{pct|tojson}}, "bar-chart");
+            barChart.drawChart({{pct1|tojson}}, "bar-chart1");
+
         });
   </script>
 </head>
@@ -236,6 +238,20 @@
               </div>
             </div>
 
+            <!-- New Graph -->
+            <div class="row">
+              <div class="col-xl-12 col-lg-7">
+                <div class="card shadow mb-4">
+                  <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Antibiotic prescriptions per GP</h6>
+                  </div>
+                  <div class="card-body">
+                    <canvas id="bar-chart1"></canvas>
+                  </div>
+                </div>
+              </div>
+
+
           <!-- Content Row -->
           <div class="row last-row">
 
@@ -273,10 +289,9 @@
             </div>
 
             </div>
-            </div>
             <div class="row last-row">
             <div class="col-xl-6">
-              <!-- Show the BNF data for slected PCT -->
+              <!-- Show the BNF data for selected PCT -->
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
                   <h6 class="m-0 font-weight-bold text-primary">BNF data per PCT</h6>
@@ -288,7 +303,7 @@
                         <option name="option-list" value="{{ item }}">{{ item }}</option>
                         {% endfor %}
                       </select>
-                      <input type="submit" value="Update" class="btn btn-outline-secondary" />
+                      <input type="submit" value="Update" class="btn btn-outline-secondary"/>
                     </form>
                     <hr />
                     <table class="table">
