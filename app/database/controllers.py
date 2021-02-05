@@ -34,7 +34,7 @@ class Database:
         #         filter(PrescribingData.PCT == pct).\
         #         group_by(PracticeData.practice_name)))
 
-        return db.session.execute("SELECT prac.PRACTICE, SUM(ITEMS) AS Antibiotic_total FROM practice_level_prescribing as pres JOIN practices as prac on pres.PRACTICE = prac.CODE WHERE BNFCODE LIKE '05%' AND PCT = :pct_ GROUP BY prac.PRACTICE;",{'pct_': pct})
+        return db.session.execute("SELECT prac.PRACTICE, SUM(ITEMS) AS Antibiotic_total FROM practice_level_prescribing as pres JOIN practices as prac on pres.PRACTICE = prac.CODE WHERE BNFCODE LIKE '0501%' AND PCT = :pct_ GROUP BY prac.PRACTICE;",{'pct_': pct})
 
     def get_distinct_pcts(self):
         """Return the distinct PCT codes."""
