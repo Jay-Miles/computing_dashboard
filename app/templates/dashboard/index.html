@@ -50,6 +50,7 @@
       <img id="uom-logo" src="{{url_for('static', filename='img/logo.png') }}" />
       <br />
       <hr class="sidebar-divider my-0">
+
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
         <div class="nav-link" onclick="popup.showAboutPopup();">
@@ -64,8 +65,6 @@
       <div class="sidebar-heading">
         Main menu:
       </div>
-
-
 
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
@@ -207,7 +206,7 @@
               </div>
             </div>
 
-            <!-- Pending Requests Card Example -->
+            <!-- Number of unique items -->
             <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
@@ -238,7 +237,7 @@
               </div>
             </div>
 
-            <!-- New Graph -->
+            <!-- Bar chart of antibiotic prescriptions by GP -->
             <div class="row">
               <div class="col-xl-12 col-lg-7">
                 <div class="card shadow mb-4">
@@ -264,32 +263,33 @@
                   <h6 class="m-0 font-weight-bold text-primary">Infection treatment drug as % of all infection treatments</h6>
                 </div>
                 <div class="card-body">
-                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Antibacterial Drugs: {{ tile_pct[0] }}%</div>
-                <div class="progress progress-sm mr-2">
-                            <div class="progress-bar bg-info" role="progressbar" style="width: {{ tile_pct[0] }}%" aria-valuemin="0" aria-valuemax="100"></div>
-               
-                </div><br>
-                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">AntiFungal Drugs: {{ tile_pct[1] }}%</div>
-                <div class="progress progress-sm mr-2">
-                            <div class="progress-bar bg-info" role="progressbar" style="width: {{ tile_pct[1] }}%" aria-valuemin="0" aria-valuemax="100"></div>
-                </div><br>
-                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Antiviral Drugs: {{ tile_pct[2] }}%</div>
-                <div class="progress progress-sm mr-2">
-                            <div class="progress-bar bg-info" role="progressbar" style="width: {{ tile_pct[2] }}%" aria-valuemin="0" aria-valuemax="100"></div>
-              
-              </div><br>
-                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Antiprotozoal Drugs: {{ tile_pct[3] }}%</div>
-                <div class="progress progress-sm mr-2">
-                            <div class="progress-bar bg-info" role="progressbar" style="width: {{ tile_pct[3] }}%" aria-valuemin="0" aria-valuemax="100"></div>
-                </div><br>
-                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Anthelmintic Drugs: {{ tile_pct[4] }}%</div>
-                <div class="progress progress-sm mr-2">
-                            <div class="progress-bar bg-info" role="progressbar" style="width: {{ tile_pct[4] }}%" aria-valuemin="0" aria-valuemax="100"></div>
+                  <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Antibacterial Drugs: {{ tile_pct[0] }}%</div>
+                  <div class="progress progress-sm mr-2">
+                    <div class="progress-bar bg-info" role="progressbar" style="width: {{ tile_pct[0] }}%" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <br>
+                  <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">AntiFungal Drugs: {{ tile_pct[1] }}%</div>
+                  <div class="progress progress-sm mr-2">
+                    <div class="progress-bar bg-info" role="progressbar" style="width: {{ tile_pct[1] }}%" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <br>
+                  <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Antiviral Drugs: {{ tile_pct[2] }}%</div>
+                  <div class="progress progress-sm mr-2">
+                    <div class="progress-bar bg-info" role="progressbar" style="width: {{ tile_pct[2] }}%" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <br>
+                  <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Antiprotozoal Drugs: {{ tile_pct[3] }}%</div>
+                  <div class="progress progress-sm mr-2">
+                    <div class="progress-bar bg-info" role="progressbar" style="width: {{ tile_pct[3] }}%" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <br>
+                  <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Anthelmintic Drugs: {{ tile_pct[4] }}%</div>
+                  <div class="progress progress-sm mr-2">
+                    <div class="progress-bar bg-info" role="progressbar" style="width: {{ tile_pct[4] }}%" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
                 </div>
-            </div>
+              </div>
 
-            </div>
-            
             <div class="col-l-6">
               <!-- Show the BNF data for selected PCT -->
               <div class="card shadow mb-4">
@@ -360,7 +360,7 @@
                   <button id=calculate-button type="button" class="btn btn-primary" onclick=clearance()>Calculate</button>
                   <button type="button" class="btn btn-danger" onclick="popup.hideCeatCalcFormPopup();">Close</button>
                   <div>
-                   <br /><br />
+                  <br /><br />
                       <p style="color:blue; font-weight:bold; font-size:20px">Creatinine Clearance: <val id="clearance"></val> (mL/min)</p>
                   </div>
                 </div>
@@ -371,18 +371,22 @@
           <div id="about-box">
             <div class="card">
               <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">About the prescribing dashboard</h6>
-                  
-                </div>
-                <div class="card-body">
-                  <p>This is a prescribing dashboard for monitoring of prescription information within and between CCGs developed by Jay, Yongwon, Igor, Viveck and Sophie </p>
+                  <h6 class="m-0 font-weight-bold text-primary">About the 
+                    prescribing dashboard</h6>
+              </div>
+              <div class="card-body">
+                <p>This is a prescribing dashboard for monitoring of 
+                  prescription information within and between CCGs developed 
+                  by Jay, Yongwon, Igor, Viveck and Sophie</p>
                   <br />
                   <hr />
-                   <button type="button" class="btn btn-danger" onclick="popup.hideAboutPopup();">Close</button>
-                </div>
+                  <button type="button" class="btn btn-danger" 
+                  onclick="popup.hideAboutPopup();">Close</button>
+              </div>
             </div>
           </div>
         </div>
+
         <!-- /.container-fluid -->
 
       </div>
@@ -426,31 +430,31 @@
 <script>
         function clearance() {
 
-         var age =  document.getElementById("pt_Age").value;
-         var weight = document.getElementById("pt_weight").value;
-         var creatinine = document.getElementById("pt_serum").value;
-         if(document.getElementById('male').checked) {
+        var age =  document.getElementById("pt_Age").value;
+        var weight = document.getElementById("pt_weight").value;
+        var creatinine = document.getElementById("pt_serum").value;
+        if(document.getElementById('male').checked) {
             var gender = "male";
-         }
-         else if(document.getElementById('female').checked){
+        }
+        else if(document.getElementById('female').checked){
             var gender = "female";
-         }
-         var clearance;
-         if(gender=="male"){clearance = (((140-age)*weight*1.23)/(creatinine)).toFixed(1)};
-         if(gender=="female"){clearance = (((140-age)*weight*1.04)/(creatinine)).toFixed(1)};
-         if((age>=1 && age<=120) && (weight>=1 && weight<=200) && (creatinine>=1 && creatinine<=200) && gender)
-         { document.getElementById("clearance").innerHTML = clearance;}
-         else{
-             document.getElementById("clearance").innerHTML = "NA";
-             alert(
-             "To calculate Creatinine Clearance please:\n\n"+
+        }
+        var clearance;
+        if(gender=="male"){clearance = (((140-age)*weight*1.23)/(creatinine)).toFixed(1)};
+        if(gender=="female"){clearance = (((140-age)*weight*1.04)/(creatinine)).toFixed(1)};
+        if((age>=1 && age<=120) && (weight>=1 && weight<=200) && (creatinine>=1 && creatinine<=200) && gender)
+        { document.getElementById("clearance").innerHTML = clearance;}
+        else{
+            document.getElementById("clearance").innerHTML = "NA";
+            alert(
+            "To calculate Creatinine Clearance please:\n\n"+
 
-             "\tSelect patient's gender: Male or Female\n"  +
-             "\tProvide patient's age (1-120)\n" +
-             "\tProvide patient's weight (1-200kg)\n" +
-             "\tProvide patient's serum creatinine (1-200micromol/L)\n"
-         );
-         }
+            "\tSelect patient's gender: Male or Female\n"  +
+            "\tProvide patient's age (1-120)\n" +
+            "\tProvide patient's weight (1-200kg)\n" +
+            "\tProvide patient's serum creatinine (1-200micromol/L)\n"
+        );
+        }
         }
 
 </script>

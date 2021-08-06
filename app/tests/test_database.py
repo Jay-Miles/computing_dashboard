@@ -25,6 +25,7 @@ class DatabaseTests(unittest.TestCase):
         """Run post each test."""
         pass
 
+
     def test_get_total_number_items(self):
         """Test that the total number of itmems returns the correct value."""
         self.assertEquals(self.db_mod.get_total_number_items(), 8218165)
@@ -42,8 +43,9 @@ class DatabaseTests(unittest.TestCase):
         """Test that the total number of unique drugs returns the correct value."""
         self.assertEquals(self.db_mod.get_unique_drugs(), 13922)
     
+
     def test_get_distinct_pcts(self):
-        """Test that checks the correct number of PCTs are in the list and checks the correct number of PCTs are in the list"""
+        """Test that checks the correct number of PCTs are in the list"""
         self.assertEquals(len(set(self.db_mod.get_distinct_pcts())), 34)    
 
     def test_get_prescribed_items_per_pct(self):
@@ -53,6 +55,10 @@ class DatabaseTests(unittest.TestCase):
     def test_get_n_data_for_pct(self):
         """Test that checks that all data for given PCT is returned"""
         self.assertEquals(str(self.db_mod.get_n_data_for_PCT('01R', 5)[0]), '<PrescribingData 32467>')
+
+
+    def test_total_infection_drugs(self):
+        self.assertEquals(self.db_mod.total_infection_drugs(), 238512)
 
     def test_get_infection_drug_percentage_antibacterial(self):
         """Test that the percentage of antibacterials returns the correct value."""
@@ -74,8 +80,11 @@ class DatabaseTests(unittest.TestCase):
         """Test that the percentage of anthelmintic returns the correct value."""
         self.assertEquals(self.db_mod.get_infection_drug_percentage_anthelmintics(), 551)
 
-    def test_total_infection_drugs(self):
-        self.assertEquals(self.db_mod.total_infection_drugs(), 238512)
+
+
+    def test_get_antibiotic_total_in_gp_in_pct(self):
+        self.assertEquals(self.db_mod.get_antibiotic_total_in_gp_in_pct('116').first(), ('RECOVERY CENTRE BISHOP AUCKLAND', 1))
+
 
     def test_creatinine_calculator(self):
         """Test that the creatinine calculator produces the correct output."""
@@ -90,15 +99,11 @@ class DatabaseTests(unittest.TestCase):
         whole_path2 = os.path.join(path2, rel_path2)
         driver.get(whole_path2)
         
-    #     driver.find_element_by_id('pt_Age').send_keys(50)
-    #     driver.find_element_by_id('pt_weight').send_keys(50)
-    #     driver.find_element_by_id('pt_serum').send_keys(50)
-    #     driver.find_element_by_id('male').send_keys()
-    #     driver.find_element_by_id('calculate-button').click()
-
-    def test_get_antibiotic_total_in_gp_in_pct(self):
-        self.assertEquals(self.db_mod.get_antibiotic_total_in_gp_in_pct('116').first(), ('RECOVERY CENTRE BISHOP AUCKLAND', 1))
-
+        driver.find_element_by_id('pt_Age').send_keys(50)
+        driver.find_element_by_id('pt_weight').send_keys(50)
+        driver.find_element_by_id('pt_serum').send_keys(50)
+        driver.find_element_by_id('male').send_keys()
+        driver.find_element_by_id('calculate-button').click()
 
 if __name__ == "__main__":
     unittest.main()

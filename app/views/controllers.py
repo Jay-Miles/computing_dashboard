@@ -46,19 +46,16 @@ def home():
     title_data_pct = generate_data_for_pcts()
 
     # render the HTML page passing in relevant data
-    return render_template('dashboard/index.html', tile_data=title_data_items,tile_pct=title_data_pct,
-                           pct={'data': bar_values, 'labels': bar_labels},
-                           pct_list=pcts, pct_data=selected_pct_data, pct1={'data': anti_total, 'labels': gp_name})
+    return render_template('dashboard/index.html', tile_data=title_data_items,
+        tile_pct=title_data_pct, pct={'data': bar_values,
+        'labels': bar_labels}, pct_list=pcts, pct_data=selected_pct_data, 
+        pct1={'data': anti_total, 'labels': gp_name})
 
 
-def generate_barchart_data_gp(gp_data):
-    """Generate the data needed to populate the gp barchart."""
-    gp_name = []
-    anti_total = []
-    for data in gp_data: 
-        gp_name.append(data[0])
-        anti_total.append(data[1])
-    return anti_total, gp_name
+def generate_data_for_tiles():
+    """Generate the data for the four home page tiles."""
+    return db_mod.get_total_number_items(), db_mod.get_avg_ACTCOST(), db_mod.get_top_prescribed_item(), db_mod.get_unique_drugs() 
+
 
 def generate_barchart_data():
     """Generate the data needed to populate the barchart."""
@@ -71,13 +68,18 @@ def generate_barchart_data():
     return [data_values, pct_codes]
 
 
+def generate_barchart_data_gp(gp_data):
+    """Generate the data needed to populate the gp barchart."""
+    gp_name = []
+    anti_total = []
+    for data in gp_data: 
+        gp_name.append(data[0])
+        anti_total.append(data[1])
+    return anti_total, gp_name
 
-def generate_data_for_tiles():
-    """Generate the data for the four home page titles."""
-    return db_mod.get_total_number_items(), db_mod.get_avg_ACTCOST(), db_mod.get_top_prescribed_item(), db_mod.get_unique_drugs() 
 
 def generate_data_for_pcts():
-    """Generate the data for the four home page titles."""
+    """Generate antimicrobial drug data"""
     total_infection_drugs = db_mod.total_infection_drugs()
     list = ((db_mod.get_infection_drug_percentage_antibacterial()/total_infection_drugs)*100), ((db_mod.get_infection_drug_percentage_antifungal()/total_infection_drugs)*100), ((db_mod.get_infection_drug_percentage_antiviral()/total_infection_drugs)*100), ((db_mod.get_infection_drug_percentage_antiprotozoal()/total_infection_drugs)*100), ((db_mod.get_infection_drug_percentage_anthelmintics()/total_infection_drugs)*100)
     rounded_list = [round(num, 2) for num in list]

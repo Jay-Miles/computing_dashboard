@@ -33,6 +33,3 @@ class PracticeData(db.Model):
     city = db.Column(db.Text)
     county = db.Column(db.Text)
     post_code = db.Column(db.String(10))
-
-
-
